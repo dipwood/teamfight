@@ -11,7 +11,7 @@ router.get('/', function(req, res, next)
 	checkCookie(req, res);
 	console.log("We're in the load route. Cookie: ", req.cookies.managersession);
 	sessionID = req.session.id;
-	console.log("Session ID: ", sessionID)
+	console.log("Session ID!: ", sessionID)
 	})
 
 function checkCookie(req, res)
