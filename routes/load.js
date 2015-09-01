@@ -65,10 +65,11 @@ function checkCookie(req, res)
   */
 	};
 
-// shouldn't be called, redirect to index just in case
+/* shouldn't be called, redirect to index just in case
 router.post('/', function(req, res, next) 
   {
 	 res.redirect('/')
 	})
+*/
 
 module.exports = router;
