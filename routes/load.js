@@ -19,9 +19,9 @@ function checkCookie(req, res)
 	// if cookie data exists
 	// if (req.session && req.cookies.managersession)
 		// {
-    var uri = 'mongodb://testuser:apptest123@ds035683.mongolab.com:35683/heroku_td4242cl';
-		MongoClient.connect(uri, function(err, db) 
-    // MongoClient.connect('mongodb://127.0.0.1:27017/users', function(err, db)
+    // var uri = 'mongodb://testuser:apptest123@ds035683.mongolab.com:35683/heroku_td4242cl'; // heroku
+		// MongoClient.connect(uri, function(err, db) // heroku
+    MongoClient.connect('mongodb://127.0.0.1:27017/users', function(err, db) // local
     		{
     		if (err) throw err;
     		console.log("Connected to Database");
@@ -30,7 +30,7 @@ function checkCookie(req, res)
         // find the user based on session id
     		var userFinder = db.collection('users').find({ "cookieDetails" : sessionID });
     		userFinder.nextObject(function(err, doc) 
-      			{
+      		  {
       			assert.equal(err, null);
       			if (doc != null) 
        				{
@@ -53,23 +53,7 @@ function checkCookie(req, res)
               res.status(200).send('No save found! Please go to New Game to create one!');
         			}
         		})
-    		//}
-    	)}
-
-	/* else if no cookie data, redirect to index
-	else
-		{
-		console.log("No cookie data");	
-		res.redirect('/')
-		}	
-  */
-	};
-
-/* shouldn't be called, redirect to index just in case
-router.post('/', function(req, res, next) 
-  {
-	 res.redirect('/')
-	})
-*/
+    		})
+	}
 
 module.exports = router;

@@ -5,10 +5,10 @@ var express        = require('express');
 var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
-var path		   = require('path');
-var favicon 	   = require('serve-favicon');
-var logger 		   = require('morgan');
-var session 	   = require('express-session');
+var path		       = require('path');
+var favicon 	     = require('serve-favicon');
+var logger 		     = require('morgan');
+var session 	     = require('express-session');
 var MongoStore 	   = require('connect-mongostore')(session);
 var cookieParser   = require('cookie-parser');
 
@@ -58,14 +58,19 @@ app.use(express.static(__dirname + '/public'));
 // store session in mongodb on heroku
 var conf = {
   db: {
-    db: 'heroku_td4242cl',
-    host: 'ds035683.mongolab.com',
-    port: 35683,  // optional, default: 27017
-    username: 'testuser', // optional
-    password: 'apptest123', // optional
-    collection: 'login' // optional, default: sessions
+    // db: 'heroku_td4242cl', // heroku
+    db: 'login', // local
+    // host: 'ds035683.mongolab.com', // heroku
+    host: '127.0.0.1', // local
+    // port: 35683,  // heroku
+    port: '27017', // local
+    // username: 'testuser', // heroku
+    // password: 'apptest123', // heroku
+    /// collection: 'login' // heroku
+    collection: 'users', // local
   },
-  secret: '076ee61d63aa10a125ea872411e433b9'
+  // secret: '076ee61d63aa10a125ea872411e433b9' // heroku
+  secret: 'secret1' // local
 };
 
 app.use(session(
